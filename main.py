@@ -105,7 +105,11 @@ def get_session():
 SessionDep = Annotated[Session, Depends(get_session)]
 
 # Create the FastAPI application instance.
-app = FastAPI()
+app = FastAPI(
+    title="Helpdesk API",
+    version="1.0.0",
+    description="A small REST API demonstrating CRUD + search + PATCH backed by SQLite."
+)
 
 
 @app.on_event("startup")
