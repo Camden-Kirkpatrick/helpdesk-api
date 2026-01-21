@@ -171,7 +171,7 @@ def query_ticket_by_id(ticket_id: int, session: SessionDep) -> Ticket:
 # Search for a ticket via query parameters
 @app.get("/tickets/search", response_model=list[TicketPublic])
 def query_ticket_by_parameters(
-    session: SessionDep,
+    session: Session = Depends(get_session),
     title: str | None = None,
     description: str | None = None,
     priority: int | None = Query(default=None, ge=1, le=5),
