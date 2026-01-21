@@ -156,22 +156,10 @@ def read_tickets(
     tickets = session.exec(select(Ticket).offset(offset).limit(limit)).all()
     return tickets
 
-
-# Get Ticket by id
-@app.get("/tickets/{ticket_id}", response_model=TicketPublic)
-def query_ticket_by_id(ticket_id: int, session: SessionDep) -> Ticket:
-    # Search using the ticket's id, which is the primary key in the DB
-    ticket = session.get(Ticket, ticket_id)
-    if not ticket:
-        raise HTTPException(
-            status_code=404, detail=f"Ticket with {ticket_id=} does not exist"
-        )
-    return ticket
-
 # Search for a ticket via query parameters
 @app.get("/tickets/search", response_model=list[TicketPublic])
 def query_ticket_by_parameters(
-    session: Session = Depends(get_session),
+    session: SessionDep,
     title: str | None = None,
     description: str | None = None,
     priority: int | None = Query(default=None, ge=1, le=5),
@@ -199,6 +187,18 @@ def query_ticket_by_parameters(
     # Execute the search query
     tickets = session.exec(stmt.offset(offset).limit(limit)).all()
     return tickets
+
+
+# Get Ticket by id
+@app.get("/tickets/{ticket_id}", response_model=TicketPublic)
+def query_ticket_by_id(ticket_id: int, session: SessionDep) -> Ticket:
+    # Search using the ticket's id, which is the primary key in the DB
+    ticket = session.get(Ticket, ticket_id)
+    if not ticket:
+        raise HTTPException(
+            status_code=404, detail=f"Ticket with {ticket_id=} does not exist"
+        )
+    return ticket
 
 
 # Update Ticket
