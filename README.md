@@ -10,6 +10,7 @@ Demonstrates CRUD operations, validation, search filtering, and partial updates 
 - FastAPI
 - SQLModel (SQLAlchemy + Pydantic)
 - SQLite
+- Docker
 
 ---
 
@@ -73,6 +74,18 @@ run_api.cmd
 Open:
 - API docs: http://127.0.0.1:8000/docs
 - Root: http://127.0.0.1:8000/
+
+### Option 3) Run with Docker (recommended)
+
+Build the image:
+```bash
+docker build -t helpdesk-api .
+```
+
+Run the container:
+```bash
+docker run --rm -p 8000:8000 helpdesk-api
+```
 
 ---
 
