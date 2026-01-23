@@ -28,32 +28,46 @@ Demonstrates CRUD operations, validation, search filtering, and partial updates 
 
 ## Setup
 
-### 1) Create and activate a virtual environment
+### 1) Create a virtual environment
+
+```bash
+python -m venv .venv
+```
+---
+
+### 2) Activate the virtual environment (manual)
+You only need to do this if you are NOT using the provided run script.
 
 **Windows (Command Prompt):**
 ```bash
-python -m venv .venv
 .venv\Scripts\activate
 ```
 
 **macOS / Linux:**
 ```bash
-python -m venv .venv
 source .venv/bin/activate
 ```
 
 ---
 
-### 2) Install dependencies
+### 3) Install dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ---
 
-### 3) Run the API
+## Run the API
+
+### Option 1) Run manually (any platform)
 ```bash
 uvicorn main:app --reload
+```
+
+### Option 2) Run using the provided script (Windows only):
+```bash
+run_api.cmd
 ```
 
 Open:
@@ -64,10 +78,18 @@ Open:
 
 ## Demo client
 
+⚠️ The API must be running in a separate terminal before running the demo client.
+
 Run the demo script (creates tickets, patches, searches, deletes):
 
+### Option 1) Run manually (any platform)
 ```bash
 python demo_client.py
+```
+
+### Option 2) Run using the provided script (Windows only):
+```bash
+run_demo.cmd
 ```
 
 ---
@@ -83,6 +105,17 @@ Body:
   "title": "Printer not working",
   "description": "Office printer keeps jamming",
   "priority": 3
+}
+```
+
+Response (example):
+```json
+{
+  "id": 1,
+  "title": "Printer not working",
+  "description": "Office printer keeps jamming",
+  "priority": 3,
+  "status": "open"
 }
 ```
 
