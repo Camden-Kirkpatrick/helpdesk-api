@@ -27,7 +27,7 @@ Demonstrates CRUD operations, validation, search filtering, and partial updates 
 
 ---
 
-## Setup
+# Setup (Non-Docker)
 
 ### 1) Create a virtual environment
 
@@ -75,7 +75,9 @@ Open:
 - API docs: http://127.0.0.1:8000/docs
 - Root: http://127.0.0.1:8000/
 
-### Option 3) Run with Docker (recommended)
+---
+
+## Setup using Docker (recommended)
 
 Build the image:
 ```bash
